@@ -7,7 +7,7 @@ status](https://travis-ci.org/inconshreveable/ngrok.svg)](https://travis-ci.org/
 
 
 需要修改的默认地址在`\src\ngrok\client\config.go:76`
-地址最好做一下拆分, 然后加壳
+地址最好做一下拆分, 然后加壳, 额, 发现根本没用, 抓一下包就出来ip了
 
 ```
 addr := ""
