@@ -1,6 +1,31 @@
 [![Build
 status](https://travis-ci.org/inconshreveable/ngrok.svg)](https://travis-ci.org/inconshreveable/ngrok)
 
+#### 修改说明:
+
+隐藏服务器地址
+
+
+需要修改的默认地址在`\src\ngrok\client\config.go:76`
+地址最好做一下拆分, 然后加壳
+
+```
+addr := ""
+addr += "ngrok"
+addr += "."
+addr += "xx"
+addr += "xx"
+addr += "xx"
+addr += "xx"
+addr += "."
+addr += "xx"
+addr += ":"
+addr += "10"
+addr += "01"
+```
+
+编译说明参考: https://ubock.com/article/31
+
 # ngrok - Introspected tunnels to localhost ([homepage](https://ngrok.com))
 ### ”I want to expose a local server behind a NAT or firewall to the internet.”
 ![](https://ngrok.com/static/img/overview.png)
@@ -30,7 +55,7 @@ ngrok.com ran a pay-what-you-want hosted service of 1.x from early 2013 until Ap
 
 ## Production Use
 
-**DO NOT RUN THIS VERSION OF NGROK (1.X) IN PRODUCTION**. Both the client and server are known to have serious reliability issues including memory and file descriptor leaks as well as crashes. There is also no HA story as the server is a SPOF. You are advised to run 2.0 for any production quality system. 
+**DO NOT RUN THIS VERSION OF NGROK (1.X) IN PRODUCTION**. Both the client and server are known to have serious reliability issues including memory and file descriptor leaks as well as crashes. There is also no HA story as the server is a SPOF. You are advised to run 2.0 for any production quality system.
 
 ## What can I do with ngrok?
 - Expose any http service behind a NAT or firewall to the internet on a subdomain of ngrok.com

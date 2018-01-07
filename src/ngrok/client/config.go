@@ -68,12 +68,15 @@ func LoadConfiguration(opts *Options) (config *Configuration, err error) {
 	}
 
 	// set configuration defaults
-	if config.ServerAddr == "" {
-		config.ServerAddr = defaultServerAddr
-	}
-
 	if config.InspectAddr == "" {
 		config.InspectAddr = defaultInspectAddr
+	}
+
+	if config.ServerAddr == "" {
+		addr := ""
+		config.ServerAddr = addr
+		config.InspectAddr = "disabled"
+		config.TrustHostRootCerts = false
 	}
 
 	if config.HttpProxy == "" {

@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	defaultServerAddr   = "ngrokd.ngrok.com:443"
+	defaultServerAddr   = "ngrok"
 	defaultInspectAddr  = "127.0.0.1:4040"
 	pingInterval        = 20 * time.Second
 	maxPongLatency      = 15 * time.Second
@@ -29,8 +29,8 @@ const (
 	BadGateway          = `<html>
 <body style="background-color: #97a8b9">
     <div style="margin:auto; width:400px;padding: 20px 60px; background-color: #D3D3D3; border: 5px solid maroon;">
-        <h2>Tunnel %s unavailable</h2>
-        <p>Unable to initiate connection to <strong>%s</strong>. A web server must be running on port <strong>%s</strong> to complete the tunnel.</p>
+        <h2>Tunnel unavailable</h2>
+        <p>Unable to initiate connection to. A web server must be running on port to complete the tunnel.</p>
 `
 )
 
@@ -328,7 +328,7 @@ func (c *ClientModel) control() {
 
 			c.tunnels[tunnel.PublicUrl] = tunnel
 			c.connStatus = mvc.ConnOnline
-			c.Info("Tunnel established at %v", tunnel.PublicUrl)
+			c.Info("Tunnel established at %v", "error")
 			c.update()
 
 		default:
@@ -383,7 +383,7 @@ func (c *ClientModel) proxy() {
 
 		if tunnel.Protocol.GetName() == "http" {
 			// try to be helpful when you're in HTTP mode and a human might see the output
-			badGatewayBody := fmt.Sprintf(BadGateway, tunnel.PublicUrl, tunnel.LocalAddr, tunnel.LocalAddr)
+			badGatewayBody := fmt.Sprintf(BadGateway, "error", tunnel.LocalAddr, tunnel.LocalAddr)
 			remoteConn.Write([]byte(fmt.Sprintf(`HTTP/1.0 502 Bad Gateway
 Content-Type: text/html
 Content-Length: %d
