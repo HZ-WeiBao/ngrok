@@ -314,7 +314,7 @@ func (c *ClientModel) control() {
 
 		case *msg.NewTunnel:
 			if m.Error != "" {
-				emsg := fmt.Sprintf("Server failed to allocate tunnel: %s", m.Error)
+				emsg := fmt.Sprintf("Server failed to allocate tunnel:", m.Error)
 				c.Error(emsg)
 				c.ctl.Shutdown(emsg)
 				continue
